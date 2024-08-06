@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signUp } from "../utils/authSlice";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
   const [username, setUsername] = useState("");
@@ -12,10 +13,10 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(signUp({username, email, password}))
-    setUsername("")
-    setEmail("")
-    setPassword("")
+    dispatch(signUp({ username, email, password }));
+    setUsername("");
+    setEmail("");
+    setPassword("");
   };
 
   return (
@@ -59,6 +60,12 @@ const SignUp = () => {
           >
             Sign Up
           </button>
+          <p className="mt-4 text-center">
+            Already have an account?{" "}
+            <Link to="/login" className="text-blue-500">
+              Login
+            </Link>
+          </p>
         </form>
       </div>
     </div>

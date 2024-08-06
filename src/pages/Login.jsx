@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../utils/authSlice';
-import { Navigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../utils/authSlice";
+import { Link, Navigate } from "react-router-dom";
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
@@ -15,7 +15,7 @@ const Login = () => {
   };
 
   if (isAuthenticated) {
-    return <Navigate to="/tasks"/>
+    return <Navigate to="/tasks" />;
   }
 
   return (
@@ -49,6 +49,12 @@ const Login = () => {
           >
             Login
           </button>
+          <p className="mt-4 text-center">
+            Don't have an account?
+            <Link to="/" className="text-blue-500">
+              Sign Up
+            </Link>
+          </p>
         </form>
       </div>
     </div>
