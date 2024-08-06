@@ -15,7 +15,7 @@ const Login = () => {
   };
 
   if (isAuthenticated) {
-    console.log("authenticated")
+    return <Navigate to="/tasks"/>
   }
 
   return (
