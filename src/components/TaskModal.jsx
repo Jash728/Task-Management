@@ -1,21 +1,50 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaTimes } from "react-icons/fa";
-import { addTask } from "../utils/taskSlice";
+import { addTask, updateTask } from "../utils/taskSlice";
 
-const TaskModal = ({ onClose }) => {
+const TaskModal = ({ onClose, taskToEdit}) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("work");
-  const [priority, setPriority] = useState("");
+  const [priority, setPriority] = useState("high");
   const [dueDate, setDueDate] = useState("");
   const [status, setStatus] = useState("pending");
+
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
 
+  
+
+
+  useEffect(()=>{
+    if(taskToEdit){
+      setTitle(taskToEdit.title);
+      setDescription(taskToEdit.description);
+      setCategory(taskToEdit.category);
+      setPriority(taskToEdit.priority);
+      setDueDate(taskToEdit.dueDate);
+      setStatus(taskToEdit.status);
+    }
+  }, [taskToEdit])
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addTask({
+
+    if(taskToEdit){
+      dispatch(updateTask({
+        ...taskToEdit,
+        title,
+        description,
+        category,
+        priority,
+        dueDate,
+        status,
+      }))
+    }
+    else{
+      dispatch(addTask({
+        id: new Date().getTime(),
         title,
         description,
         category,
@@ -24,6 +53,8 @@ const TaskModal = ({ onClose }) => {
         status,
         username: user.username,
     }))
+    }
+    
     onClose();
   };
 
