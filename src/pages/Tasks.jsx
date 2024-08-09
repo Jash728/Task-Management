@@ -1,16 +1,26 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import Sidebar from '../components/Sidebar';
-import Main from '../components/Main';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserId } from "../utils/taskSlice";
+import Sidebar from "../components/Sidebar";
+import Main from "../components/Main";
+import Footer from "../components/Footer";
 
 const Tasks = () => {
-  const username = useSelector((store) => store.auth);
-  const theme = useSelector((store) => store.theme.currentTheme); // Get the current theme from the Redux store
+  const dispatch = useDispatch();
+  const userId = useSelector((state) => state.auth.user?.userId);
+
+  useEffect(() => {
+    if (userId) {
+      dispatch(setUserId(userId));
+    }
+  }, [userId, dispatch]);
 
   return (
-    <div className={`flex min-h-screen ${theme === 'light' ? 'bg-gray-100 text-gray-900' : 'bg-gray-900 text-gray-100'}`}>
-      <Sidebar />
-      <Main />
+    <div className="flex flex-col min-h-screen">
+      <div className="flex-grow">
+        <Main />
+      </div>
+      <Footer />
     </div>
   );
 };
