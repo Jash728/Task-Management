@@ -1,8 +1,13 @@
-# React + Vite
+# Task Management App
+ - Tech Stacks
+    - React, Redux, Tailwind
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ - Features
+    - Register/login/logout
+    - Add/Update/Delete Tasks
+    - Filter options by category, status and by due date
+    - Search Tasks by title and description
+    - Light-Dark Theme
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Deployed URL
+https://advanced-task-management.vercel.app/
